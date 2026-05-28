@@ -6,10 +6,15 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { getApiClient } from "@/lib/api-client";
+import { auth } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function ProjectsPage() {
+  const { userId } = await auth();
+  if (!userId) redirect("/sign-in");
+
   const requestHeaders = await headers();
 
   const apiClient = getApiClient(requestHeaders);
