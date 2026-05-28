@@ -6,9 +6,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        hostname: "3lbm6vryvm.ufs.sh",
-      },
+      { hostname: "3lbm6vryvm.ufs.sh" },
+      // Supabase Storage
+      { hostname: "asxcpepirqzwhdxzjyoi.supabase.co" },
+      { protocol: "https", hostname: "*.supabase.co" },
     ],
   },
 };
