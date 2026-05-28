@@ -115,7 +115,9 @@ export const codeAgentFunction = inngest.createFunction(
       system:
         "You create short, product-like project names (5 - 10 words, Title Case). Return ONLY the name",
       model: openai({
-        model: "gpt-5.2",
+        model: process.env.OPENROUTER_MODEL ?? "openai/gpt-4.1",
+        apiKey: process.env.OPENROUTER_API_KEY,
+        baseUrl: "https://openrouter.ai/api/v1",
       }),
     });
 
@@ -144,7 +146,9 @@ export const codeAgentFunction = inngest.createFunction(
       system: PROMPT,
       description: "An expert coding agent",
       model: openai({
-        model: "gpt-5.2",
+        model: process.env.OPENROUTER_MODEL ?? "openai/gpt-4.1",
+        apiKey: process.env.OPENROUTER_API_KEY,
+        baseUrl: "https://openrouter.ai/api/v1",
       }),
 
       tools: [

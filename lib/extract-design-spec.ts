@@ -61,9 +61,12 @@ export async function extractDesignSpecFromImage(params: {
   imageUrl: string;
   userHint: string | null;
 }) {
-  const openai = new OpenAI();
+  const openai = new OpenAI({
+    apiKey: process.env.OPENROUTER_API_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+  });
   const response = await openai.chat.completions.parse({
-    model: "gpt-4o-2024-08-06",
+    model: process.env.OPENROUTER_VISION_MODEL ?? "openai/gpt-4o-2024-08-06",
     messages: [
       {
         role: "system",
