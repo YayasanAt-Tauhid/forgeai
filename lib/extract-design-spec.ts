@@ -3,8 +3,6 @@ import { DESIGN_PROMPT } from "@/inngest/prompt";
 import OpenAI from "openai";
 import { z } from "zod";
 
-const openai = new OpenAI();
-
 const DesignSpecSchema = z.object({
   meta: z.object({
     title: z.string(),
@@ -63,6 +61,7 @@ export async function extractDesignSpecFromImage(params: {
   imageUrl: string;
   userHint: string | null;
 }) {
+  const openai = new OpenAI();
   const response = await openai.chat.completions.parse({
     model: "gpt-4o-2024-08-06",
     messages: [
