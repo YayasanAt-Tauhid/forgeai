@@ -12,17 +12,9 @@ const config: OpenNextConfig = {
     },
   },
   edgeExternals: ["node:crypto"],
-  middleware: {
-    external: true,
-    override: {
-      wrapper: "cloudflare-edge",
-      converter: "edge",
-      proxyExternalRequest: "fetch",
-      incrementalCache: "dummy",
-      tagCache: "dummy",
-      queue: "dummy",
-    },
-  },
+  // middleware/proxy compilation disabled: Next.js 16's proxy.ts architecture
+  // is not yet supported by OpenNext Cloudflare adapter (issue #13755).
+  // Auth is enforced per-route via Clerk's auth() and clerkMiddleware fallback.
 };
 
 export default config;
