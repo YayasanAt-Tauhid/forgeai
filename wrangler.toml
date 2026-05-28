@@ -1,24 +1,31 @@
 name = "forgeai"
+main = ".open-next/worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-# Output dir dari @cloudflare/next-on-pages
-pages_build_output_dir = ".vercel/output/static"
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
 # =============================================================================
 # Environment Variables (non-secret)
-# Secret variables ditambahkan via: wrangler pages secret put VAR_NAME
-# Atau di Cloudflare dashboard > Pages > Settings > Environment variables
+# Secret variables: wrangler secret put VAR_NAME
+# Atau via Cloudflare dashboard > Workers & Pages > Settings > Variables
 # =============================================================================
 
 [vars]
 NEXT_PUBLIC_CLERK_SIGN_IN_URL = "/sign-in"
 NEXT_PUBLIC_CLERK_SIGN_UP_URL = "/sign-up"
 NEXT_PUBLIC_SUPABASE_URL = "https://asxcpepirqzwhdxzjyoi.supabase.co"
-# NEXT_PUBLIC_SUPABASE_ANON_KEY  -> set via dashboard (atau vars di bawah)
-# NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY -> set via dashboard
 
-# =============================================================================
-# Untuk local dev dengan wrangler pages dev, buat file .dev.vars
-# (format sama dengan .env tapi tanpa quotes)
-# =============================================================================
+# Secret variables yang perlu di-set via CLI atau dashboard:
+# wrangler secret put DATABASE_URL
+# wrangler secret put NEXT_PUBLIC_SUPABASE_ANON_KEY
+# wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# wrangler secret put NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+# wrangler secret put CLERK_SECRET_KEY
+# wrangler secret put UPLOADTHING_TOKEN
+# wrangler secret put OPENAI_API_KEY
+# wrangler secret put E2B_API_KEY
+# wrangler secret put INNGEST_EVENT_KEY
+# wrangler secret put INNGEST_SIGNING_KEY
+# wrangler secret put UNSPLASH_API_KEY
+# wrangler secret put UNSPLASH_SECRET
